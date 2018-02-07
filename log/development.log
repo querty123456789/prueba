@@ -1,0 +1,1496 @@
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBanks (20180206024822)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "banks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180206024822"]]
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBankSubsidiaries (20180206024908)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "bank_subsidiaries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar, "bank_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_2457f31678"
+FOREIGN KEY ("bank_id")
+  REFERENCES "banks" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE  INDEX "index_bank_subsidiaries_on_bank_id" ON "bank_subsidiaries" ("bank_id")[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180206024908"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-02-06 02:49:35.596748"], ["updated_at", "2018-02-06 02:49:35.596748"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bank_subsidiaries_on_bank_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bank_subsidiaries_on_bank_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Banco de Credito del Peru"], ["created_at", "2018-02-06 03:33:39.106999"], ["updated_at", "2018-02-06 03:33:39.106999"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "BBVA Continental"], ["created_at", "2018-02-06 03:33:39.115054"], ["updated_at", "2018-02-06 03:33:39.115054"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Jorge Basadre 410 - San Isisdro - Lima"], ["bank_id", 1], ["created_at", "2018-02-06 03:33:39.166103"], ["updated_at", "2018-02-06 03:33:39.166103"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Pacifico 180 - Nuevo Chimbote - Ancash"], ["bank_id", 1], ["created_at", "2018-02-06 03:33:39.175110"], ["updated_at", "2018-02-06 03:33:39.175110"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. 2 de Mayo 650 - San Isidro - Lima"], ["bank_id", 1], ["created_at", "2018-02-06 03:33:39.182111"], ["updated_at", "2018-02-06 03:33:39.182111"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Jorge Basadre 510 - San Isisdro - Lima"], ["bank_id", 2], ["created_at", "2018-02-06 03:33:39.190107"], ["updated_at", "2018-02-06 03:33:39.190107"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. 2 de Mayo 1034 - San Isisdro - Lima"], ["bank_id", 2], ["created_at", "2018-02-06 03:33:39.198299"], ["updated_at", "2018-02-06 03:33:39.198299"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2018-02-05 23:03:37 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 1293ms (Views: 1258.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-05 23:03:45 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (66.0ms)
+Completed 200 OK in 192ms (Views: 166.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/bank_subsidiaries/1" for 127.0.0.1 at 2018-02-05 23:03:55 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 148ms (Views: 127.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries/2" for 127.0.0.1 at 2018-02-05 23:04:02 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 166ms (Views: 147.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries/3" for 127.0.0.1 at 2018-02-05 23:04:04 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 120ms (Views: 99.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1/edit" for 127.0.0.1 at 2018-02-05 23:04:10 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (1.0ms)
+  Rendered banks/edit.html.erb within layouts/application (19.0ms)
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 1.0ms)
+
+
+  
+SyntaxError (C:/Development/Prueba08/app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+'.freeze;   f.fields_for: bank_subsidiaries do |subsidi
+                         ^
+C:/Development/Prueba08/app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^):
+  
+app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+app/views/banks/edit.html.erb:3:in `_app_views_banks_edit_html_erb__249312612_110969800'
+Started GET "/" for 127.0.0.1 at 2018-02-05 23:04:28 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 114ms (Views: 97.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/2" for 127.0.0.1 at 2018-02-05 23:05:04 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 2], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  Rendered banks/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 140ms (Views: 118.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bank_subsidiaries/5" for 127.0.0.1 at 2018-02-05 23:05:07 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 115ms (Views: 95.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bank_subsidiaries/5/edit" for 127.0.0.1 at 2018-02-05 23:05:09 -0500
+Processing by BankSubsidiariesController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/edit.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (25.0ms)
+  Rendered bank_subsidiaries/edit.html.erb within layouts/application (44.0ms)
+Completed 200 OK in 164ms (Views: 138.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-05 23:05:14 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 133ms (Views: 114.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:05:31 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 115ms (Views: 97.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1/edit" for 127.0.0.1 at 2018-02-05 23:05:33 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (1.0ms)
+  Rendered banks/edit.html.erb within layouts/application (20.0ms)
+Completed 500 Internal Server Error in 90ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (C:/Development/Prueba08/app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+'.freeze;   f.fields_for: bank_subsidiaries do |subsidi
+                         ^
+C:/Development/Prueba08/app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^):
+  
+app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+app/views/banks/edit.html.erb:3:in `_app_views_banks_edit_html_erb__249312612_108578420'
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:05:37 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 1503ms (Views: 1445.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/2" for 127.0.0.1 at 2018-02-05 23:06:15 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 2], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  Rendered banks/show.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 123ms (Views: 102.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries/4" for 127.0.0.1 at 2018-02-05 23:06:23 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 119ms (Views: 93.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-05 23:06:26 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 150ms (Views: 129.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bank_subsidiaries/new" for 127.0.0.1 at 2018-02-05 23:06:31 -0500
+Processing by BankSubsidiariesController#new as HTML
+  Rendering bank_subsidiaries/new.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (2.0ms)
+  Rendered bank_subsidiaries/new.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 135ms (Views: 115.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/bank_subsidiaries" for 127.0.0.1 at 2018-02-05 23:07:02 -0500
+Processing by BankSubsidiariesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"konE2pHsJN6ZJ9CYY3xm2wGgax2PvfzTakx+2SAED5NrBgRftthczUMQEiKuXKRWpoOMQCEfZkEFm4wkn8MTkw==", "bank_subsidiary"=>{"address"=>"Av. Juan de Arona 130 - San Isidro - Lima", "bank_id"=>"2"}, "commit"=>"Create Bank subsidiary"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Juan de Arona 130 - San Isidro - Lima"], ["bank_id", 2], ["created_at", "2018-02-06 04:07:02.675841"], ["updated_at", "2018-02-06 04:07:02.675841"]]
+  [1m[35m (12.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bank_subsidiaries/6
+Completed 302 Found in 22ms (ActiveRecord: 13.0ms)
+
+
+Started GET "/bank_subsidiaries/6" for 127.0.0.1 at 2018-02-05 23:07:02 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 121ms (Views: 102.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-05 23:07:05 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 129ms (Views: 110.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries/1" for 127.0.0.1 at 2018-02-05 23:07:08 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 115ms (Views: 94.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-05 23:07:10 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 137ms (Views: 117.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-02-05 23:07:14 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 125ms (Views: 106.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/2" for 127.0.0.1 at 2018-02-05 23:07:16 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 2], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  Rendered banks/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 122ms (Views: 102.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:07:19 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 111ms (Views: 93.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:09:53 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 139ms (Views: 116.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/banks/1/edit" for 127.0.0.1 at 2018-02-05 23:10:07 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (0.0ms)
+  Rendered banks/edit.html.erb within layouts/application (23.0ms)
+Completed 500 Internal Server Error in 108ms (ActiveRecord: 1.0ms)
+
+
+  
+SyntaxError (C:/Development/Prueba08/app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+'.freeze;   f.fields_for: bank_subsidiaries do |subsidi
+                         ^
+C:/Development/Prueba08/app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^):
+  
+app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+app/views/banks/edit.html.erb:3:in `_app_views_banks_edit_html_erb__249312612_111759940'
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:10:13 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 147ms (Views: 119.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-05 23:10:14 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 131ms (Views: 113.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:13:10 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 126ms (Views: 104.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/new" for 127.0.0.1 at 2018-02-05 23:13:12 -0500
+Processing by BanksController#new as HTML
+  Rendering banks/new.html.erb within layouts/application
+  Rendered banks/_form.html.erb (1.0ms)
+  Rendered banks/new.html.erb within layouts/application (19.0ms)
+Completed 500 Internal Server Error in 110ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (C:/Development/Prueba08/app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+'.freeze;   f.fields_for: bank_subsidiaries do |subsidi
+                         ^
+C:/Development/Prueba08/app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^):
+  
+app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+app/views/banks/new.html.erb:3:in `_app_views_banks_new_html_erb___657297847_118329060'
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:13:48 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 152ms (Views: 132.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:16:23 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 133ms (Views: 114.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-05 23:16:24 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 118ms (Views: 98.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:16:35 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 115ms (Views: 96.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1/edit" for 127.0.0.1 at 2018-02-05 23:16:36 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (1.0ms)
+  Rendered banks/edit.html.erb within layouts/application (19.0ms)
+Completed 500 Internal Server Error in 108ms (ActiveRecord: 1.0ms)
+
+
+  
+SyntaxError (C:/Development/Prueba08/app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+_buffer.append=  f.fields_for: bank_subsidiaries do |subsidi
+                              ^
+C:/Development/Prueba08/app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^):
+  
+app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+app/views/banks/edit.html.erb:3:in `_app_views_banks_edit_html_erb__249312612_70914520'
+Started GET "/banks/1/edit" for 127.0.0.1 at 2018-02-05 23:17:01 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (0.0ms)
+  Rendered banks/edit.html.erb within layouts/application (19.0ms)
+Completed 500 Internal Server Error in 92ms (ActiveRecord: 1.0ms)
+
+
+  
+SyntaxError (C:/Development/Prueba08/app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+_buffer.append=  f.fields_for: bank_subsidiaries do |subsidi
+                              ^
+C:/Development/Prueba08/app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^):
+  
+app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+app/views/banks/_form.html.erb:33: syntax error, unexpected keyword_end, expecting end-of-input
+app/views/banks/edit.html.erb:3:in `_app_views_banks_edit_html_erb__249312612_111734900'
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:17:17 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 131ms (Views: 107.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-05 23:17:19 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 122ms (Views: 99.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-05 23:19:54 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 122ms (Views: 101.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:20:01 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 118ms (Views: 100.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:21:54 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 116ms (Views: 96.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/1/edit" for 127.0.0.1 at 2018-02-05 23:21:56 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (2.0ms)
+  Rendered banks/edit.html.erb within layouts/application (19.0ms)
+Completed 500 Internal Server Error in 92ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (C:/Development/Prueba08/app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+_buffer.append=  f.fields_for: bank_subsidiaries do | subsid
+                              ^
+C:/Development/Prueba08/app/views/banks/_form.html.erb:32: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^):
+  
+app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+app/views/banks/_form.html.erb:32: syntax error, unexpected keyword_end, expecting end-of-input
+app/views/banks/edit.html.erb:3:in `_app_views_banks_edit_html_erb__249312612_110733400'
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:22:15 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 120ms (Views: 102.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:25:16 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 138ms (Views: 115.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/1/edit" for 127.0.0.1 at 2018-02-05 23:25:17 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (240.2ms)
+  Rendered banks/edit.html.erb within layouts/application (259.2ms)
+Completed 500 Internal Server Error in 348ms (ActiveRecord: 1.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `f' for #<#<Class:0x000000000db111a8>:0x000000000bd876c8>):
+    17:   </div>
+    18: 
+    19:   <h2>Sucursales</h2>
+    20:   <%= f.fields_for :bank_subsidiaries do | subsidiary | %>
+    21:     <div class="bank_subsidiaries_fields">
+    22:       <div class="fields">
+    23:         <%= subsidiary.label :address, "Direccion" %>
+  
+app/views/banks/_form.html.erb:20:in `block in _app_views_banks__form_html_erb___1914425999_79606900'
+app/views/banks/_form.html.erb:1:in `_app_views_banks__form_html_erb___1914425999_79606900'
+app/views/banks/edit.html.erb:3:in `_app_views_banks_edit_html_erb__249312612_99394620'
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:25:36 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 118ms (Views: 100.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:28:49 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 153ms (Views: 127.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/new" for 127.0.0.1 at 2018-02-05 23:28:51 -0500
+Processing by BanksController#new as HTML
+  Rendering banks/new.html.erb within layouts/application
+  Rendered banks/_form.html.erb (221.2ms)
+  Rendered banks/new.html.erb within layouts/application (240.2ms)
+Completed 500 Internal Server Error in 324ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `f' for #<#<Class:0x000000000885cde0>:0x000000000d367268>):
+    17:   </div>
+    18: 
+    19:   <h2>Sucursales</h2>
+    20:   <%= f.fields_for :bank_subsidiaries do |subsidiary| %>
+    21:     <div class="bank_subsidiaries_fields">
+    22:       <div class="fields">
+    23:         <%= subsidiary.label :address, "Direccion" %>
+  
+app/views/banks/_form.html.erb:20:in `block in _app_views_banks__form_html_erb___1914425999_110780460'
+app/views/banks/_form.html.erb:1:in `_app_views_banks__form_html_erb___1914425999_110780460'
+app/views/banks/new.html.erb:3:in `_app_views_banks_new_html_erb___657297847_110837560'
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:48:44 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 149ms (Views: 128.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:48:46 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 127ms (Views: 107.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/new" for 127.0.0.1 at 2018-02-05 23:48:48 -0500
+Processing by BanksController#new as HTML
+  Rendering banks/new.html.erb within layouts/application
+  Rendered banks/_form.html.erb (9.1ms)
+  Rendered banks/new.html.erb within layouts/application (27.1ms)
+Completed 200 OK in 138ms (Views: 120.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:48:58 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 130ms (Views: 106.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:52:09 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 120ms (Views: 102.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-05 23:52:11 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 119ms (Views: 96.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:52:13 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 119ms (Views: 101.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/new" for 127.0.0.1 at 2018-02-05 23:52:14 -0500
+Processing by BanksController#new as HTML
+  Rendering banks/new.html.erb within layouts/application
+  Rendered banks/_form.html.erb (1.0ms)
+  Rendered banks/new.html.erb within layouts/application (18.0ms)
+Completed 500 Internal Server Error in 103ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (C:/Development/Prueba08/app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+ffer.append=  form.fields_for: bank_subsidiaries do |subsidi
+                              ^
+C:/Development/Prueba08/app/views/banks/_form.html.erb:34: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^):
+  
+app/views/banks/_form.html.erb:20: syntax error, unexpected ':'
+app/views/banks/_form.html.erb:34: syntax error, unexpected keyword_end, expecting end-of-input
+app/views/banks/new.html.erb:3:in `_app_views_banks_new_html_erb___657297847_111352780'
+Started GET "/banks/new" for 127.0.0.1 at 2018-02-05 23:52:23 -0500
+Processing by BanksController#new as HTML
+  Rendering banks/new.html.erb within layouts/application
+  Rendered banks/_form.html.erb (5.0ms)
+  Rendered banks/new.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 174ms (Views: 154.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-05 23:52:27 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 116ms (Views: 98.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:28:37 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 132ms (Views: 106.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/banks/new" for 127.0.0.1 at 2018-02-06 00:28:39 -0500
+Processing by BanksController#new as HTML
+  Rendering banks/new.html.erb within layouts/application
+  Rendered banks/_form.html.erb (3.0ms)
+  Rendered banks/new.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 152ms (Views: 116.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:33:48 -0500
+Processing by BanksController#index as HTML
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 4.0ms)
+
+
+  
+NoMethodError (undefined method `+' for nil:NilClass):
+  
+app/controllers/banks_controller.rb:10:in `block in index'
+app/controllers/banks_controller.rb:9:in `index'
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:34:09 -0500
+Processing by BanksController#index as HTML
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendering banks/index.html.erb within layouts/application
+  Rendered banks/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 141ms (Views: 108.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:34:30 -0500
+Processing by BanksController#index as HTML
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+Completed 500 Internal Server Error in 144ms (ActiveRecord: 2.0ms)
+
+
+  
+NameError (undefined local variable or method `prueba' for #<BanksController:0x0000000009a21f30>):
+  
+app/controllers/banks_controller.rb:10:in `block in index'
+app/controllers/banks_controller.rb:9:in `index'
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:34:40 -0500
+Processing by BanksController#index as HTML
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.0ms)
+
+
+  
+NoMethodError (undefined method `+' for nil:NilClass):
+  
+app/controllers/banks_controller.rb:10:in `block in index'
+app/controllers/banks_controller.rb:9:in `index'
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:36:39 -0500
+Processing by BanksController#index as HTML
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 3.0ms)
+
+
+  
+NoMethodError (undefined method `+' for nil:NilClass):
+  
+app/controllers/banks_controller.rb:10:in `block in index'
+app/controllers/banks_controller.rb:9:in `index'
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:37:14 -0500
+Processing by BanksController#index as HTML
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendering banks/index.html.erb within layouts/application
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 152ms (Views: 113.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:37:37 -0500
+Processing by BanksController#index as HTML
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendering banks/index.html.erb within layouts/application
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 148ms (Views: 115.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:38:06 -0500
+Processing by BanksController#index as HTML
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendering banks/index.html.erb within layouts/application
+  Rendered banks/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 134ms (Views: 99.4ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:46:56 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 10995ms (Views: 10957.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:48:28 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 195ms (Views: 178.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-06 00:50:18 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (49.4ms)
+Completed 200 OK in 255ms (Views: 231.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:50:37 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 213ms (Views: 195.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-06 00:50:41 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 220ms (Views: 199.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-06 00:51:19 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 242ms (Views: 222.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bank_subsidiaries/1" for 127.0.0.1 at 2018-02-06 00:51:21 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 224ms (Views: 204.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bank_subsidiaries/" for 127.0.0.1 at 2018-02-06 00:51:26 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 206ms (Views: 187.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries/" for 127.0.0.1 at 2018-02-06 00:51:40 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 239ms (Views: 220.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries/bank_subsidiaries/" for 127.0.0.1 at 2018-02-06 00:51:42 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"bank_subsidiaries"}
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find BankSubsidiary with 'id'=bank_subsidiaries):
+  
+app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+Started GET "/bank_subsidiaries/" for 127.0.0.1 at 2018-02-06 00:51:45 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (970.7ms)
+Completed 200 OK in 2531ms (Views: 2096.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries/" for 127.0.0.1 at 2018-02-06 00:51:51 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 243ms (Views: 223.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:51:53 -0500
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"bank_subsidiaries"}
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT  "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find BankSubsidiary with 'id'=bank_subsidiaries):
+  
+app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+Started GET "/bank_subsidiaries/banks/1" for 127.0.0.1 at 2018-02-06 00:51:57 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/bank_subsidiaries/banks/1"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.2) lib/puma/configuration.rb:225:in `call'
+puma (3.11.2) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.2) lib/puma/server.rb:438:in `process_client'
+puma (3.11.2) lib/puma/server.rb:302:in `block in run'
+puma (3.11.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/bank_subsidiaries/banks/1" for 127.0.0.1 at 2018-02-06 00:52:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/bank_subsidiaries/banks/1"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.2) lib/puma/configuration.rb:225:in `call'
+puma (3.11.2) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.2) lib/puma/server.rb:438:in `process_client'
+puma (3.11.2) lib/puma/server.rb:302:in `block in run'
+puma (3.11.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-02-06 00:52:04 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (489.3ms)
+Completed 200 OK in 7746ms (Views: 7679.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:52:17 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 210ms (Views: 190.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:52:32 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 253ms (Views: 235.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:52:35 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 223ms (Views: 203.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-06 00:52:38 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 204ms (Views: 183.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/banks" for 127.0.0.1 at 2018-02-06 00:52:56 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"banks"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Bank with 'id'=banks):
+  
+app/controllers/banks_controller.rb:69:in `set_bank'
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-06 00:53:01 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 251ms (Views: 193.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-06 00:53:02 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 211ms (Views: 190.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-06 00:53:30 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 216ms (Views: 192.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-02-06 00:53:35 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 225ms (Views: 200.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:53:39 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 202ms (Views: 182.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:53:41 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 195ms (Views: 175.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:53:44 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 194ms (Views: 176.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:53:47 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 211ms (Views: 193.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:53:49 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 212ms (Views: 194.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:53:50 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 227ms (Views: 207.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/1" for 127.0.0.1 at 2018-02-06 00:53:54 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  Rendered banks/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 193ms (Views: 173.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:54:01 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 205ms (Views: 186.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/2" for 127.0.0.1 at 2018-02-06 00:54:04 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 2], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  Rendered banks/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 234ms (Views: 211.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:54:06 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (13.6ms)
+Completed 200 OK in 210ms (Views: 191.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/2" for 127.0.0.1 at 2018-02-06 00:54:11 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 2], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  Rendered banks/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 190ms (Views: 171.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/2" for 127.0.0.1 at 2018-02-06 00:54:31 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 2], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  Rendered banks/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 225ms (Views: 203.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:54:33 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 193ms (Views: 175.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bank_subsidiaries" for 127.0.0.1 at 2018-02-06 00:54:35 -0500
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Bank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 210ms (Views: 190.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks/2" for 127.0.0.1 at 2018-02-06 00:54:37 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 2], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  Rendered banks/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 222ms (Views: 201.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:54:38 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 197ms (Views: 178.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:55:40 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 218ms (Views: 199.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 00:56:31 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 213ms (Views: 194.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-02-06 01:23:43 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 682ms (Views: 641.8ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/banks/2" for 127.0.0.1 at 2018-02-06 01:23:57 -0500
+Processing by BanksController#destroy as HTML
+  Parameters: {"authenticity_token"=>"DLcqbZVYuzTxkqeGyxuL54thYpLOphc6UFhn7HqQGJhEOGZzvLKgUr2hAF6YSdzcq/+h2Bcia38H3Tx80Detmg==", "id"=>"2"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  [1m[35mSQL (3.0ms)[0m  [1m[31mDELETE FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ?[0m  [["id", 4]]
+  [1m[35mSQL (0.0ms)[0m  [1m[31mDELETE FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ?[0m  [["id", 5]]
+  [1m[35mSQL (0.0ms)[0m  [1m[31mDELETE FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ?[0m  [["id", 6]]
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "banks" WHERE "banks"."id" = ?[0m  [["id", 2]]
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/banks
+Completed 302 Found in 77ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 01:23:57 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 216ms (Views: 197.3ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/banks/1" for 127.0.0.1 at 2018-02-06 01:24:11 -0500
+Processing by BanksController#destroy as HTML
+  Parameters: {"authenticity_token"=>"WsUhXT8im7EaT9KKb5CGofW6aSjVuL26RPskRFMeXjgSSm1DFsiA11Z8dVI8wtGa1SSqYgw8wf8Tfn/U+bnrOg==", "id"=>"1"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[31mDELETE FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ?[0m  [["id", 2]]
+  [1m[35mSQL (0.0ms)[0m  [1m[31mDELETE FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ?[0m  [["id", 3]]
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "banks" WHERE "banks"."id" = ?[0m  [["id", 1]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/banks
+Completed 302 Found in 21ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 01:24:11 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 220ms (Views: 201.4ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Banco de Credito del Peru"], ["created_at", "2018-02-06 06:24:35.464159"], ["updated_at", "2018-02-06 06:24:35.464159"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "BBVA Continental"], ["created_at", "2018-02-06 06:24:35.474147"], ["updated_at", "2018-02-06 06:24:35.474147"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Jorge Basadre 410 - San Isisdro - Lima"], ["bank_id", 3], ["created_at", "2018-02-06 06:24:35.537206"], ["updated_at", "2018-02-06 06:24:35.537206"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Pacifico 180 - Nuevo Chimbote - Ancash"], ["bank_id", 3], ["created_at", "2018-02-06 06:24:35.546201"], ["updated_at", "2018-02-06 06:24:35.546201"]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. 2 de Mayo 650 - San Isidro - Lima"], ["bank_id", 3], ["created_at", "2018-02-06 06:24:35.558232"], ["updated_at", "2018-02-06 06:24:35.558232"]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Jorge Basadre 510 - San Isisdro - Lima"], ["bank_id", 4], ["created_at", "2018-02-06 06:24:35.571251"], ["updated_at", "2018-02-06 06:24:35.571251"]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. 2 de Mayo 1034 - San Isisdro - Lima"], ["bank_id", 4], ["created_at", "2018-02-06 06:24:35.583279"], ["updated_at", "2018-02-06 06:24:35.583279"]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 01:24:50 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 667ms (Views: 633.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/4" for 127.0.0.1 at 2018-02-06 01:24:55 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 4], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  Rendered banks/show.html.erb within layouts/application (65.0ms)
+Completed 200 OK in 273ms (Views: 245.4ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-02-06 21:37:09 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 540ms (Views: 507.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/4/edit" for 127.0.0.1 at 2018-02-06 21:37:18 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  Rendered banks/_form.html.erb (29.1ms)
+  Rendered banks/edit.html.erb within layouts/application (46.1ms)
+Completed 200 OK in 258ms (Views: 201.7ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/banks/4" for 127.0.0.1 at 2018-02-06 21:37:24 -0500
+Processing by BanksController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"a60sftvBi5UWVgRY5iikDwFW+tTmvEX1oR/WeJu0WLCmZCduT7H+/cd5pGBl0a0l8MW11dYRBgM2McfC0LX0rA==", "bank"=>{"name"=>"BBVA Continental", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. Jorge Basadre 510 - San Isisdro - Lima", "_destroy"=>"0", "id"=>"10"}, "1"=>{"address"=>"Av. 2 de Mayo 1034 - San Isisdro - Lima", "_destroy"=>"0", "id"=>"11"}, "2"=>{"address"=>"", "_destroy"=>"1"}}}, "commit"=>"Update Bank", "id"=>"4"}
+  [1m[36mBank Load (0.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Load (0.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (10, 11)[0m  [["bank_id", 4]]
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/banks/4
+Completed 302 Found in 15ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/banks/4" for 127.0.0.1 at 2018-02-06 21:37:24 -0500
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 4], ["LIMIT", 1]]
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  Rendered banks/show.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 176ms (Views: 156.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/banks" for 127.0.0.1 at 2018-02-06 21:37:26 -0500
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  Rendered banks/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 173ms (Views: 156.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/banks/4/edit" for 127.0.0.1 at 2018-02-06 21:37:28 -0500
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT  "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  Rendered banks/_form.html.erb (4.4ms)
+  Rendered banks/edit.html.erb within layouts/application (22.4ms)
+Completed 200 OK in 199ms (Views: 179.0ms | ActiveRecord: 2.0ms)
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prueba08</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Mi Sitio</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="../banks">Inicio</a></li>
+	      <li class="dropdown">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bancos
+	        <span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	          <li><a href="./banks/1">BCP</a></li>
+	          <li><a href="./banks/2">BBVA</a></li>
+	        </ul>
+	      </li>
+	      <li><a href="../bank_subsidiaries">Sucursales</a></li>
+	    </ul>
+	  </div>
+	</nav>
+    <%= yield %>
+  </body>
+</html>
